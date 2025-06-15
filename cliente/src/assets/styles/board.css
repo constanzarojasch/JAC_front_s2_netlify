@@ -1,0 +1,81 @@
+@import url('./style.css');
+
+.board-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 70%;       
+  gap: 2px;
+  margin: 2rem auto;   
+}
+
+
+.cell {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  font-size: 0.6rem;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  position: relative;
+}
+
+.cell-number {
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  width: 60%; 
+  height: auto;
+  z-index: 2;
+}
+
+@media (max-width: 500px) {
+  .board-container {
+    max-width: 95vw;
+  }
+}
+
+.player-stack {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 3;
+}
+
+.player-token {
+  background-color: #333;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  cursor: default;
+  position: absolute;  
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+
+.tooltip {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  background: #000;
+  color: white;
+  padding: 2px 4px;
+  font-size: 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: none;
+}
+
+.player-token:hover .tooltip {
+  display: block;
+}

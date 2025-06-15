@@ -1,0 +1,77 @@
+/* include style.css */
+
+@import url('./style.css');
+
+.salon-container {
+  padding: 1rem;
+}
+
+.salon-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.salon-icon {
+  max-width: 100px;
+  width: 20%;
+  min-width: 10px;
+}
+
+.salon-icon.left  { order: 1; }
+.salon-icon.right { order: 3; }
+
+.salon-table-wrapper {
+  order: 2;
+  width: 100%;
+  max-width: 600px;
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: #f0f9fa;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.salon-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.salon-table thead {
+  background-color: #cde7ed;
+}
+
+.salon-table th,
+.salon-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid #444;
+}
+
+.salon-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #cde7ed; 
+  z-index: 1;
+}
+
+.salon-table tbody tr:nth-child(even) {
+  background-color: #e6f4f7;
+}
+
+@media (max-width: 600px) {
+  .salon-content {
+    flex-direction: column;
+  }
+  .salon-icon {
+    width: 25%;
+  }
+  .salon-title {
+    font-size: 2rem;
+  }
+}

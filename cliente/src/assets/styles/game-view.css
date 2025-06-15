@@ -1,0 +1,160 @@
+@import url('./style.css');
+.game-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem;
+  gap: 2rem;
+  min-height: 80vh;
+}
+
+.game-left-panel,
+.game-right-panel {
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.game-main-panel {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.spotlight-button {
+  background-color: #8B0000;
+  color: gold;
+  font-weight: 600;
+  border: 2px solid black;
+  border-radius: 2rem;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: background 0.3s;
+}
+
+.spotlight-button:hover {
+  background-color: #a00000;
+}
+
+.spotlight-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.spotlight-card {
+  background: #5A0000;
+  color: gold;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 25px 6px gold;
+  max-width: 420px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  animation: fadeIn 0.3s ease-in;
+  border: 3px solid black;
+}
+
+.spotlight-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: gold;
+}
+
+.spotlight-card p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.spotlight-card .btn {
+  background: white;
+  color: black;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  padding: 0.6rem 1.4rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border: none;
+  transition: background 0.3s;
+}
+
+.spotlight-card .btn:hover {
+  background: #f1f1f1;
+}
+
+.dice-result-popup {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #aaa;
+  z-index: 20;
+  text-align: center;
+}
+
+.dice-result-display {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  text-align: center;
+  border: 2px solid #ddd;
+
+}
+
+.dice-result-display p {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.dice-result-display .btn {
+  margin-top: 10px;
+}
+
+.dice-panel {
+  width: 100%;
+  text-align: center;
+}
+
+.dice-panel p {
+  color: #666;
+  font-style: italic;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@media (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .game-left-panel,
+  .game-main-panel,
+  .game-right-panel {
+    width: 100%;
+    max-width: 600px;
+  }
+}

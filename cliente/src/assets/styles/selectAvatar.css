@@ -1,0 +1,52 @@
+@import './style.css';
+
+.select-avatar-page {
+  min-height: calc(100vh - 64px);
+  background: #d9eff4;
+  padding: 2rem;
+}
+.select-avatar-page h1 {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.avatars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.avatar-cell {
+  position: relative;
+  cursor: pointer;
+  transition: transform .1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar-cell img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.avatar-cell:hover {
+  transform: scale(1.05);
+}
+.avatar-cell.taken {
+  opacity: 0.4;
+  cursor: default;
+}
+.overlay {
+  position: absolute;
+  top:50%; left:50%;
+  transform: translate(-50%,-50%);
+  background: rgba(255,255,255,0.8);
+  padding: .2rem .6rem;
+  border-radius: .4rem;
+  font-weight: bold;
+}

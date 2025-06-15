@@ -1,0 +1,46 @@
+@import url('./style.css');
+
+.login-form {
+  max-width: 400px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  align-items: center;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #000;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+.login-form input:focus {
+  box-shadow: 0 0 0 3px rgba(0, 150, 168, 0.2);
+}
+
+.login-form .btn {
+  background: #f9fbfd;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.1);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-form .btn:hover {
+  background: #eef2f6;
+  box-shadow: inset 0 6px 12px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.12);
+}
+
+.login-form .error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+}

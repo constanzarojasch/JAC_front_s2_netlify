@@ -10,6 +10,8 @@
 6. Listo! Ahora puedes hacerte una cuenta en la sección de registrarse y luego login para ver, crear y jugar partidas. 
 
 ## Cómo correr el cliente en la web (deploy a netlify)
+Link: https://jacfront.netlify.app/
+Se realizo una copia del repositorio JAC_front_s2 llamado JAC_front_s2_netlify y se subio a netlify conectado al backend en render.
 
 ## Diseño HTML y CSS
 
@@ -58,6 +60,12 @@ Las principales mejoras con respecto a la entrega 0 son en el navBar y en la vis
    - Sistema de avatares visuales
    - Indicadores de turno y temporizador
 
+5.⁠ ⁠**Vista Salón de la Fama**:
+   - Temporalmente, esta vista se dejó estática y con datos falsos, pero se espera que para próxima entrega se conecte con el backend y muestre usuarios reales.
+
+6. ⁠⁠**Eliminación de vista Cuenta**:
+   - Se elimina la vista “Cuenta” que permitía ver al usuario su puntaje actual.
+
 #### Estructura CSS:
 - **style.css**: Estilos globales y componentes base
 - **game-view.css**: Estilos específicos para la vista del juego
@@ -84,3 +92,9 @@ Las principales mejoras con respecto a la entrega 0 son en el navBar y en la vis
 3. **Comunicación con Backend**: API REST con interceptores para manejo de errores
 4. **Gestión de Rutas**: Protección de rutas basada en autenticación
 5. **Optimización**: Componentes optimizados con `useCallback` para evitar re-renders innecesarios
+
+#### Cambios por implementar en proxima entrega:
+1. El boton de salir de un juego en curso (actualmente no lleva a ninguna parte).
+2. Ganar juego y generar podio (actualmente se lanza dado hasta que se gana, el ultimo lanzar dado para ganar no genera nada).
+3. La vista de Salón de la Fama debe ser conectada con datos reales del backend para la próxima entrega.
+4. El contador regresivo de la partida actualmente solo funciona para el usuario que está jugando (no los que esperan su turno) y no ocurre nada al llegar a 0. En la siguiente entrega se espera implementar el "pasar turno" que ocurre cuando a un jugador se le acaba el tiempo, además de un contador en tiempo real para el resto de los jugadores. 

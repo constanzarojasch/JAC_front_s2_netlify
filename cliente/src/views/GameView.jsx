@@ -92,6 +92,11 @@ export default function GameView({ user }) {
       <div className="game-left-panel">
         <TurnInfo username={gameData.currentPlayerUsername} timeLeft={timeLeft} />
         <LeaveButton />
+        {gameData.creatorUsername === username && (
+          <button className="btn">
+            Pausa
+          </button>
+        )}
       </div>
 
       <div className="game-main-panel">
@@ -176,7 +181,11 @@ export default function GameView({ user }) {
         <div className="spotlight-overlay">
           <div className="spotlight-card">
             <h2>SPOTLIGHT</h2>
-            <p>{otherCard.descriptionOthers}</p>
+            <p>
+              {gameData.lastCardDrawer}
+              {' '}
+              {otherCard.descriptionOthers}
+            </p>
             <button
               className="btn"
               onClick={async () => {

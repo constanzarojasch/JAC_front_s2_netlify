@@ -5,6 +5,7 @@ export default function TurnInfo({ username = 'Jugador', timeLeft = 20 }) {
       <strong>{username}</strong>
       <p>
         Tiempo restante:
+        {' '}
         {timeLeft}
         s
       </p>

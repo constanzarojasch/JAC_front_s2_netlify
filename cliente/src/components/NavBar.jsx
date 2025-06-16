@@ -19,6 +19,7 @@ export default function NavBar({ user, onLogout }) {
             <>
               <span className="nav-greeting">
                 Hola,
+                {' '}
                 {user.username}
               </span>
               <NavLink className="btn" to="/" onClick={onLogout}>Logout</NavLink>

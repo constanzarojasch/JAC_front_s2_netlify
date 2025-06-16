@@ -62,12 +62,10 @@ export default function AdminDashboard() {
 
   return (
     <main className="game-page">
-      {/* Título principal */}
       <div>
         <h1>PANEL DE ADMINISTRACIÓN</h1>
       </div>
 
-      {/* Sección Usuarios */}
       <section>
         <div className="game-header">
           <h1>Usuarios</h1>
@@ -96,7 +94,7 @@ export default function AdminDashboard() {
         )}
       </section>
 
-      <section style={{ marginTop: '2rem' }}>
+      <section className="admin-section-spacing">
         <div className="game-header">
           <h1>Partidas</h1>
           <input

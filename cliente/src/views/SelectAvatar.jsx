@@ -50,7 +50,6 @@ export default function SelectAvatar({ user }) {
         navigate(`/waiting/${gameId}`);
       }
     } catch (err) {
-      // eslint-disable-next-line no-alert
       alert(err.response?.data?.error || err.message);
     }
   };

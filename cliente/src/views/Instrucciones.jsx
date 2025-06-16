@@ -13,6 +13,7 @@ export default function Instrucciones() {
           <li>Tu avatar avanzará la cantidad de lugares que indique el dado.</li>
           <li>
             Si caes en una casilla
+            {' '}
             <strong>SPOTLIGHT</strong>
             , debes robar una carta de fortuna.
           </li>

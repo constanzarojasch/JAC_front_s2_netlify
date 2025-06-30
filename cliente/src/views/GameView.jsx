@@ -34,6 +34,7 @@ export default function GameView({ user }) {
   const [isLeaving, setIsLeaving] = useState(false);
   const [showConfirmLeave, setShowConfirmLeave] = useState(false);
   const username = user?.username;
+  const isPlayer = gameData?.players?.some((p) => p.username === username);
 
   const fetchGame = useCallback(async () => {
     try {
@@ -216,7 +217,9 @@ export default function GameView({ user }) {
 
   if (error) return <p>{error}</p>;
   if (!gameData) return <p>Cargando partida...</p>;
-
+  if (!isPlayer) {
+    return <p>No puedes interactuar con esta partida porque no eres parte de ella.</p>;
+  }
   if (gameFinished || gameData?.state === 'finalizada' || gameData?.state === 'finished') {
     return (
       <div className="game-finished-overlay">
@@ -265,12 +268,14 @@ export default function GameView({ user }) {
           timeLeft={timeLeft}
           isMyTurn={isMyTurn}
         />
+        {isPlayer && (
         <LeaveButton
           onLeave={handleLeave}
           disabled={isLeaving}
         >
           {isLeaving ? 'Retirando…' : 'Retirarse del juego'}
         </LeaveButton>
+        )}
       </div>
 
       <div className="game-main-panel">
@@ -282,53 +287,57 @@ export default function GameView({ user }) {
       </div>
 
       <div className="game-right-panel">
-        <DicePanel
-          gameId={gameId}
-          username={username}
-          isMyTurn={isMyTurn}
-          onRolled={fetchGame}
-          onDiceResult={setDiceResult}
-          onCard={setPendingCard}
-          onFakePosition={(pos) => setFakePositions({ [username]: pos })}
-        />
+        {isPlayer && (
+          <>
+            <DicePanel
+              gameId={gameId}
+              username={username}
+              isMyTurn={isMyTurn}
+              onRolled={fetchGame}
+              onDiceResult={setDiceResult}
+              onCard={setPendingCard}
+              onFakePosition={(pos) => setFakePositions({ [username]: pos })}
+            />
 
-        {diceResult && (() => {
-          let actionButton = null;
-          if (pendingCard && !cardRevealed) {
-            actionButton = (
-              <button
-                type="button"
-                className="btn"
-                onClick={() => setCardRevealed(true)}
-              >
-                Robar carta
-              </button>
-            );
-          } else if (!pendingCard) {
-            actionButton = (
-              <button
-                type="button"
-                className="btn"
-                onClick={() => setDiceResult(null)}
-              >
-                Terminar turno
-              </button>
-            );
-          }
-          return (
-            <div className="dice-result-display">
-              <p>
-                🎲
-                {diceResult.dado1}
-                +
-                {diceResult.dado2}
-                =
-                {diceResult.total}
-              </p>
-              {actionButton}
-            </div>
-          );
-        })()}
+            {diceResult && (() => {
+              let actionButton = null;
+              if (pendingCard && !cardRevealed) {
+                actionButton = (
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => setCardRevealed(true)}
+                  >
+                    Robar carta
+                  </button>
+                );
+              } else if (!pendingCard) {
+                actionButton = (
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => setDiceResult(null)}
+                  >
+                    Terminar turno
+                  </button>
+                );
+              }
+              return (
+                <div className="dice-result-display">
+                  <p>
+                    🎲
+                    {diceResult.dado1}
+                    +
+                    {diceResult.dado2}
+                    =
+                    {diceResult.total}
+                  </p>
+                  {actionButton}
+                </div>
+              );
+            })()}
+          </>
+        )}
       </div>
 
       {pendingCard && cardRevealed && (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import API from '../api';
+import ConfirmDialog from '../components/ConfirmDialog';
 import '../assets/styles/game.css';
 
 export default function AdminDashboard() {
@@ -9,6 +10,18 @@ export default function AdminDashboard() {
   const [filterGames, setFilterGames] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [confirmDialog, setConfirmDialog] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+    onConfirm: null,
+    type: '',
+  });
+  const [alertDialog, setAlertDialog] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+  });
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -30,15 +43,66 @@ export default function AdminDashboard() {
   }, [fetchData]);
 
   const handleDeleteUser = async (id) => {
-    if (!window.confirm(`¿Eliminar usuario ${id}?`)) return;
-    await API.delete(`/admin/users/${id}`);
-    setUsers((u) => u.filter((x) => x.id !== id));
+    if (id === 1) {
+      setAlertDialog({
+        isOpen: true,
+        title: 'Error',
+        message: 'No puedes eliminar al administrador principal.',
+      });
+      return;
+    }
+
+    setConfirmDialog({
+      isOpen: true,
+      title: 'Eliminar usuario',
+      message: `¿Estás seguro de que deseas eliminar al usuario con ID ${id}?`,
+      onConfirm: async () => {
+        try {
+          await API.delete(`/admin/users/${id}`);
+          setUsers((u) => u.filter((x) => x.id !== id));
+          setConfirmDialog({
+            isOpen: false, title: '', message: '', onConfirm: null, type: '',
+          });
+        } catch (err) {
+          setConfirmDialog({
+            isOpen: false, title: '', message: '', onConfirm: null, type: '',
+          });
+          setAlertDialog({
+            isOpen: true,
+            title: 'Error',
+            message: err.response?.data?.error || 'Error al eliminar usuario.',
+          });
+        }
+      },
+      type: 'user',
+    });
   };
 
   const handleDeleteGame = async (id) => {
-    if (!window.confirm(`¿Eliminar partida ${id}?`)) return;
-    await API.delete(`/admin/games/${id}`);
-    setGames((g) => g.filter((x) => x.id !== id));
+    setConfirmDialog({
+      isOpen: true,
+      title: 'Eliminar partida',
+      message: `¿Estás seguro de que deseas eliminar la partida con ID ${id}?`,
+      onConfirm: async () => {
+        try {
+          await API.delete(`/admin/games/${id}`);
+          setGames((g) => g.filter((x) => x.id !== id));
+          setConfirmDialog({
+            isOpen: false, title: '', message: '', onConfirm: null, type: '',
+          });
+        } catch (err) {
+          setConfirmDialog({
+            isOpen: false, title: '', message: '', onConfirm: null, type: '',
+          });
+          setAlertDialog({
+            isOpen: true,
+            title: 'Error',
+            message: err.response?.data?.error || 'Error al eliminar partida.',
+          });
+        }
+      },
+      type: 'game',
+    });
   };
 
   if (loading) return <p className="status">Cargando datos administrativos…</p>;
@@ -62,12 +126,10 @@ export default function AdminDashboard() {
 
   return (
     <main className="game-page">
-      {/* Título principal */}
       <div>
         <h1>PANEL DE ADMINISTRACIÓN</h1>
       </div>
 
-      {/* Sección Usuarios */}
       <section>
         <div className="game-header">
           <h1>Usuarios</h1>
@@ -96,7 +158,7 @@ export default function AdminDashboard() {
         )}
       </section>
 
-      <section style={{ marginTop: '2rem' }}>
+      <section className="admin-section-spacing">
         <div className="game-header">
           <h1>Partidas</h1>
           <input
@@ -126,6 +188,28 @@ export default function AdminDashboard() {
           </div>
         )}
       </section>
+
+      {confirmDialog.isOpen && (
+        <ConfirmDialog
+          isOpen={confirmDialog.isOpen}
+          title={confirmDialog.title}
+          message={confirmDialog.message}
+          onConfirm={confirmDialog.onConfirm}
+          onCancel={() => setConfirmDialog({
+            isOpen: false, title: '', message: '', onConfirm: null, type: '',
+          })}
+        />
+      )}
+
+      {alertDialog.isOpen && (
+        <div className="alert-dialog">
+          <h2>{alertDialog.title}</h2>
+          <p>{alertDialog.message}</p>
+          <button onClick={() => setAlertDialog({ ...alertDialog, isOpen: false })}>
+            Aceptar
+          </button>
+        </div>
+      )}
     </main>
   );
 }

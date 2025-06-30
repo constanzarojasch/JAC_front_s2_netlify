@@ -1,4 +1,3 @@
-# Cliente Fame Race
 
 ## Cómo correr el cliente localmente
 
@@ -10,6 +9,8 @@
 6. Listo! Ahora puedes hacerte una cuenta en la sección de registrarse y luego login para ver, crear y jugar partidas. 
 
 ## Cómo correr el cliente en la web (deploy a netlify)
+Link: https://jacfront.netlify.app/
+Se realizo una copia del repositorio JAC_front_s2 llamado JAC_front_s2_netlify y se subio a netlify conectado al backend en render.
 
 ## Diseño HTML y CSS
 
@@ -23,7 +24,7 @@ El frontend está desarrollado en React utilizando una arquitectura basada en co
 ### Consideraciones sobre las Reglas del Juego
 
 #### Cambios Implementados:
-1. **Sistema de Turnos**: Implementación de un temporizador de 20 segundos por turno
+1. **Sistema de Turnos**: Implementación de un temporizador de 20 segundos por turno solo para el jugador actual. Al terminar el tiempo se pasa el turno al siguiente jugador
 2. **Cartas Spotlight**: Sistema de cartas especiales que aparecen al caer en casillas específicas
 3. **Visualización de Otras Cartas**: Las cartas robadas por otros jugadores se muestran por 5 segundos automáticamente
 4. **Posiciones Dinámicas**: El tablero actualiza las posiciones de los jugadores en tiempo real
@@ -58,6 +59,12 @@ Las principales mejoras con respecto a la entrega 0 son en el navBar y en la vis
    - Sistema de avatares visuales
    - Indicadores de turno y temporizador
 
+5.⁠ ⁠**Vista Salón de la Fama**:
+   - Muestra los jugadores con más puntaje en orden descendiente con un tope de 10.
+
+6. ⁠⁠**Eliminación de vista Cuenta**:
+   - Se elimina la vista “Cuenta” que permitía ver al usuario su puntaje actual.
+
 #### Estructura CSS:
 - **style.css**: Estilos globales y componentes base
 - **game-view.css**: Estilos específicos para la vista del juego
@@ -76,11 +83,10 @@ Las principales mejoras con respecto a la entrega 0 son en el navBar y en la vis
 - Requiere conexión a internet para funcionamiento completo
 - No hay modo offline
 - Las sesiones expiran al cerrar el navegador
-- Cuando el timer en la partida termina, no pasa nada (por ahora). Se espera que en el futuro se implemente el pasar turno luego de que se acabe el timer.
 
 #### Información Relevante para Corrección:
 1. **Dependencias**: El proyecto utiliza React 18, React Router Dom, y Axios
 2. **Estructura de Estado**: Uso de React Hooks (`useState`, `useEffect`, `useCallback`, `useRef`)
 3. **Comunicación con Backend**: API REST con interceptores para manejo de errores
-4. **Gestión de Rutas**: Protección de rutas basada en autenticación
+4. **Gestión de Rutas**: Protección de rutas basada en autenticación con auth bearer en headers
 5. **Optimización**: Componentes optimizados con `useCallback` para evitar re-renders innecesarios

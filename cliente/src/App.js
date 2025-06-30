@@ -17,6 +17,7 @@ import Nosotros from './views/Nosotros';
 import WaitingRoom from './views/WaitingRoom';
 import SelectAvatar from './views/SelectAvatar';
 import GameView from './views/GameView';
+import Podium from './views/Podium';
 import { getCurrentUser, logout } from './api';
 
 function Protected({ children }) {
@@ -55,6 +56,8 @@ export default function App() {
         />
 
         <Route path="/game/:id" element={<Protected><GameView user={user} /></Protected>} />
+        <Route path="/podium" element={<Protected><Podium /></Protected>} />
+        <Route path="/podium/:id" element={<Protected><Podium /></Protected>} />
         <Route
           path="/admin"
           element={

@@ -13,7 +13,10 @@ API.interceptors.request.use((cfg) => {
 export function fetchAllUsers() {
   return API.get('/admin/users').then((res) => res.data);
 }
-
+export function leaveGame({ gameId, username }) {
+  return API.post(`/game/${gameId}/leave`, { username })
+    .then((res) => res.data);
+}
 export function fetchUserById(id) {
   return API.get(`/admin/users/${id}`).then((res) => res.data);
 }
@@ -29,6 +32,19 @@ export function fetchAllGames() {
 export function deleteGameById(id) {
   return API.delete(`/admin/games/${id}`).then((res) => res.data);
 }
+
+export function fetchGamePodium(gameId) {
+  return API.get(`/game/${gameId}/podio`).then((res) => res.data);
+}
+
+export function pasarTurno(gameId, username) {
+  return API.post(`/game/${gameId}/pasarTurno`, { username }).then((res) => res.data);
+}
+
+export function fetchHallOfFame() {
+  return API.get('/salon').then((res) => res.data);
+}
+
 export default API;
 
 export function signUp({ username, password }) {

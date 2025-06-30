@@ -146,3 +146,46 @@
   color: red;
   text-align: center;
 }
+
+.admin-section-spacing {
+  margin-top: 2rem;
+}
+
+.alert-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  text-align: center;
+  min-width: 300px;
+}
+
+.alert-dialog h2 {
+  color: #dc3545;
+  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.alert-dialog p {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.alert-dialog button {
+  background: #007bff;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+.alert-dialog button:hover {
+  background: #0056b3;
+}

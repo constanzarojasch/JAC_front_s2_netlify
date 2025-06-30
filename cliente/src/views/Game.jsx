@@ -16,7 +16,8 @@ export default function Game({ user }) {
     setError(null);
     try {
       const res = await API.get('/games');
-      setGames(res.data);
+      const notFinished = res.data.filter((game) => game.state !== 'finalizada');
+      setGames(notFinished);
     } catch (err) {
       setError(err.response?.data?.error || err.message);
     } finally {

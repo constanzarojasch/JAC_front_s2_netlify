@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import '../assets/styles/board.css';
 import star from '../assets/img/star.png';
+import avatars from '../assets/avatars';
+import avatarMap from '../assets/avatars/avatarMap';
 
 export default function Board({ spotlightPositions = [], players = [], overrides = {} }) {
   const size = 10;
@@ -26,14 +28,14 @@ export default function Board({ spotlightPositions = [], players = [], overrides
             <span className="cell-number">{cell.number}</span>
             {cell.hasStar && <img src={star} alt="star" className="star" />}
             {playersInCell.length > 0 && (
-              <div className="player-stack">
-                {playersInCell.map((p, index) => (
-                  <div
-                    key={p.id}
-                    className="player-token"
-                  >
-                    {p.avatarName.charAt(0).toUpperCase()}
-                    <span className="tooltip">{p.username}</span>
+              <div className="avatar-stack">
+                {playersInCell.map((p) => (
+                  <div key={p.id} className="avatar-wrapper">
+                    <img
+                      src={avatars[avatarMap[p.avatarName]]}
+                      alt={p.avatarName}
+                      className="avatar-icon"
+                    />
                   </div>
                 ))}
               </div>

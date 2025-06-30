@@ -16,6 +16,13 @@ export default function DicePanel({
       const res = await API.post(`/game/${gameId}/lanzarDados`, { username });
       const result = res.data;
 
+      if (result.status === 'finished' || result.message === 'La partida ha terminado') {
+        if (onRolled) {
+          onRolled();
+        }
+        return;
+      }
+
       if (onDiceResult) {
         onDiceResult(result);
       }
